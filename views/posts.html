@@ -1,0 +1,9 @@
+{% for post in posts %}
+  <div class='post'>
+    <div class='head'><span class="giragira">User</span>:{{ post.user }}<span class='smallspace'></span> <span class="unimportant">Timestamp</span>:{{ post.age }}</div>
+    <div class='body'>{{ post.body }}</div>
+  </div>
+{% else %}
+  <div>uuuhhhhh</div>
+{% endfor %}
+

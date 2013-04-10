@@ -1,0 +1,105 @@
+/*general*/
+body {
+  background: #E3DEC4;
+}
+
+/*I care about links*/
+a:link {
+  text-decoration: none;
+  color: #C45A3B;
+}
+a:visited {
+  text-decoration: none;
+  color: #919C86;
+}
+a:active {
+  text-decoration: none;
+}
+a:hover {
+  text-decoration: none;
+}
+
+#sitetitle, .threadtitle {
+  color: #243A42;
+  margin-left:10px;
+  margin-bottom:20px;
+}
+
+.mainnav {
+  color: #9E373E;
+  margin-right: 50px;
+  float: left;
+}
+.mainnav:hover {
+  color: #C45A3B;
+}
+.mainnav:visited {
+  color: #9E373E;
+}
+
+#main {
+  margin: 20px 40px;
+}
+
+.smallspace {
+  margin-right:10px;
+}
+
+.giragira {
+  color: #9E373E;
+}
+
+.unimportant {
+  color: #919C86;
+}
+
+.long {
+  margin-bottom:700px;
+}
+
+.space {
+  margin-bottom:10px;
+}
+
+/*browse page*/
+.listcont {
+  padding: 15px;
+}
+
+/*thread pages*/
+.post .notpost {
+  border-bottom: 1px #9E373E;
+  padding: 2px 4px;
+  margin-bottom: 20px;
+}
+
+.post.head {
+
+}
+
+.post.body {
+  padding: 4px;
+}
+
+.bodyin {
+  width: 600px;
+  height: 60px;
+}
+
+.button {
+  background: #C45A3B;
+  border: 0px;
+  border-radius: 5px;
+  color: #FFF;
+  margin-top:10px;
+}
+
+.spoonspan {
+  color: #9E373E;
+  margin-right: 5px;
+  margin-left: 0px;
+  float:left;
+}
+
+
+
