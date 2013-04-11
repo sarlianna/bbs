@@ -1,11 +1,17 @@
 <!doctype html>
-<html ng-app>
+<html ng-app="app">
 <head>
   <title>Lazy BBS</title>
   <link rel="stylesheet" href="./public/bootstrap.css">
   <link rel="stylesheet" href="./public/style.css">
   <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.0.6/angular.min.js"></script>
-  <script src="thread.js"></script>
+  <script> window.initdata = { posts: [
+    {% for post in posts %}
+    {user: '{{ post.user }}',
+      age: '{{ post.age }}',
+      body: '{{ post.body }}' } {% if loop.revindex0 > 0 %},{% endif %}
+    {% endfor %} ]} ;</script>
+  <script src="./public/thread.js"></script>
 </head>
 <body>
   <div id='main' ng-controller="threadCtrl">
@@ -17,12 +23,10 @@
         <input id="postbutton" class="button" type="submit" value="Post">
       </form>
     </div>
-    <div ng-repeat="post in posts">
-      <div class='post'>
-        <div class='head'><span class="giragira">User</span>:{{ post.user }}<span class='smallspace'></span> <span class="unimportant">Timestamp</span>:{{ post.age }}</div>
-        <div class='body'>{{ post.body }}</div>
+      <div class='post' ng-repeat="post in posts">
+        <div class='head'><span class="giragira">User</span>:[[post.user]]<span class='smallspace'></span> <span class="unimportant">Timestamp</span>:[[post.age]]</div>
+        <div class='body'>[[post.body]]</div>
       </div>
-    </div>
   </div>
 </body>
 </html>
