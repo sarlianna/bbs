@@ -40,16 +40,9 @@ module.exports = {
     }
   },
 
-  "postjson" : function(req, res, next{
-
-  },
-
-  "newposts" : function(req, res, next){
-    var timestamp = req.param('time');
-    if (timestamp){
-      db.posts.find({'thread': req.params.threadId, 'age':{$gt:timestamp}}, function(err, docs){//this find isn't working, for some reason.
-        res.render('posts', {posts: docs});
-      });
-    } 
+  "postjson" : function(req, res, next){
+    db.posts.find({'thread' : req.params.threadId }, function(err, docs){
+      res.render('postjson', { posts: docs });
+    });
   }
 };

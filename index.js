@@ -39,11 +39,9 @@ app.get('/browse', controllers.browsethreads);
 
 app.get('/:threadId', controllers.posts);
 
-app.get('/:threadId/json', controllers.postjson);
+app.get('/:threadId/post', controllers.postjson);
 
 app.post('/:threadId/post', controllers.addpost);
-
-app.get('/:threadId/newposts', controllers.newposts);
 
 app.listen(8000);
 console.log("Listening on port 8000...");

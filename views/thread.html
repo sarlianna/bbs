@@ -5,12 +5,14 @@
   <link rel="stylesheet" href="./public/bootstrap.css">
   <link rel="stylesheet" href="./public/style.css">
   <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.0.6/angular.min.js"></script>
+  <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.0.6/angular-resource.min.js"></script>
   <script> window.initdata = { posts: [
     {% for post in posts %}
     {user: '{{ post.user }}',
       age: '{{ post.age }}',
       body: '{{ post.body }}' } {% if loop.revindex0 > 0 %},{% endif %}
-    {% endfor %} ]} ;</script>
+    {% endfor %} ],
+    threadId: "{{ threadId }}" } ;</script>
   <script src="./public/thread.js"></script>
 </head>
 <body>
