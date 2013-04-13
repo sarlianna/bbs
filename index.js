@@ -45,6 +45,8 @@ app.get('/:threadId', function( req, res ){
   controllers.posts(req, res);
 });
 
+//app.get('/:threadId/json', function( req, res ){});
+
 app.post('/:threadId/post', function( req, res ){
   controllers.addpost(req, res);
 });
