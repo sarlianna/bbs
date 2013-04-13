@@ -33,27 +33,17 @@ app.get('/', function( req, res){
   res.render('index');
 });
 
-app.get('/newthread', function( req, res ){
-  controllers.newthread(req, res);
-});
+app.get('/newthread', controllers.newthread);
 
-app.get('/browse', function( req, res){
-  controllers.browsethreads(req, res);
-});
+app.get('/browse', controllers.browsethreads);
 
-app.get('/:threadId', function( req, res ){
-  controllers.posts(req, res);
-});
+app.get('/:threadId', controllers.posts);
 
-//app.get('/:threadId/json', function( req, res ){});
+app.get('/:threadId/json', controllers.postjson);
 
-app.post('/:threadId/post', function( req, res ){
-  controllers.addpost(req, res);
-});
+app.post('/:threadId/post', controllers.addpost);
 
-app.get('/:threadId/newposts', function( req, res ){
-  controllers.newposts(req, res);
-});
+app.get('/:threadId/newposts', controllers.newposts);
 
 app.listen(8000);
 console.log("Listening on port 8000...");
