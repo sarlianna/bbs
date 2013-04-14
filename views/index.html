@@ -6,15 +6,22 @@
   <link rel="stylesheet" href="./public/style.css">
 </head>
 <body>
-  <h3 id="sitetitle">Lazy BBS</h3>
-  <div id="main">
-    <a class="mainnav long" href="/browse">Browse Threads</a>
-    <div class="giragira space">Create New Thread</div>
-    <form action="/newthread" method="get" >
-      <label class="spoonspan">Thread Title</label><input type="text" name="title"><br />
-      <label class="spoonspan">Public?</label><input class="smallspace" type="checkbox" name="public" checked><br />
-      <input class="button" type="submit" value="Create">
+  <div class="row container">
+    <p class="text-center"><h3 id="sitetitle">Lazy BBS</h3></p>
+    <span class="span3"><a class="mainnav" href="/browse">Browse Threads</a></span>
+    <div class="span6">
+    <form action="/newthread" method="get" class="form-horizontal" >
+      <div class="control-group"><div class="primary-blue controls">Create New Thread</div></div>
+      <div class="control-group">
+        <label class="control-label primary-red">Thread Title</label><div class="controls"><input type="text" name="title"></div>
+      </div>
+      <div class="control-group">
+        <label class="control-label primary-red">Public?</label><div class="controls"><input type="checkbox" name="public" checked></div>
+      </div>
+      <div class="control-group"><div class="controls"><button class="btn" type="submit" >Create</button></div></div>
     </form>
+  </div>
+  <div class="span3"></div>
   </div>
 </body>
 </html>

@@ -6,9 +6,9 @@
   <link rel="stylesheet" href="./public/style.css">
 </head>
 <body>
-  <h3 id="sitetitle">Lazy BBS</h3>
-  <div id="main">
-    <div class="listcont">
+  <div class="container">
+    <h3 id="sitetitle text-center">Lazy BBS</h3>
+    <div>
       {% for thread in threads %}
         <div><a href='/{{ thread.id }}'>{{ thread.title }}</a></div>
       {% endfor %}

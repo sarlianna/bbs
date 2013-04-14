@@ -27,8 +27,6 @@ a:hover {
 
 .mainnav {
   color: #9E373E;
-  margin-right: 50px;
-  float: left;
 }
 .mainnav:hover {
   color: #C45A3B;
@@ -37,15 +35,7 @@ a:hover {
   color: #9E373E;
 }
 
-#main {
-  margin: 20px 40px;
-}
-
-.smallspace {
-  margin-right:10px;
-}
-
-.giragira {
+.primary-blue {
   color: #9E373E;
 }
 
@@ -53,30 +43,7 @@ a:hover {
   color: #919C86;
 }
 
-.long {
-  margin-bottom:700px;
-}
-
-.space {
-  margin-bottom:10px;
-}
-
-/*browse page*/
-.listcont {
-  padding: 15px;
-}
-
 /*thread pages*/
-.post .notpost {
-  border-bottom: 1px #9E373E;
-  padding: 2px 4px;
-  margin-bottom: 20px;
-}
-
-.post.head {
-
-}
-
 .post.body {
   padding: 4px;
 }
@@ -86,20 +53,6 @@ a:hover {
   height: 60px;
 }
 
-.button {
-  background: #C45A3B;
-  border: 0px;
-  border-radius: 5px;
-  color: #FFF;
-  margin-top:10px;
-}
-
-.spoonspan {
+.primary-red {
   color: #9E373E;
-  margin-right: 5px;
-  margin-left: 0px;
-  float:left;
 }
-
-
-
