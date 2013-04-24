@@ -10,6 +10,7 @@
     {% for post in posts %}
     {user: '{{ post.user }}',
       age: '{{ post.age }}',
+      postnum: '{{ post.postnum }}',
       body: '{{ post.body }}' } {% if loop.revindex0 > 0 %},{% endif %}
     {% endfor %} ],
     threadId: "{{ threadId }}" } ;</script>
@@ -17,7 +18,7 @@
 </head>
 <body>
   <div class='container' ng-controller="threadCtrl">
-    <h3 class="threadtitle text-center" >{{ thread.title }}</h3>
+    <div class="page-header text-center"><h3>{{ title }}</h3></div>
     <div id='add'>
       <form ng-submit="addPost()" class="form-horizontal" method="post">
         <div class="control-group">
@@ -34,7 +35,7 @@
     </div>
     <div>Sort by:<button class="btn" ng-click="changeSort()" type="button" ng-bind="sortBtn" >Oldest</button></div>
       <div class='post' ng-repeat="post in posts | orderBy:orderProp:postReverse ">
-        <div class='head'><span class="giragira">User</span>:[[post.user]]<span class='smallspace'></span> <span class="unimportant">Timestamp</span>:[[post.age]]</div>
+        <div id='[[post.postnum]]' class='head'>Post: [[post.postnum]]<span class='smallspace'></span> User:[[post.user]]<span class='smallspace'></span> <span class="unimportant">Timestamp</span>:[[post.age]]</div>
         <div class='body'><p>[[post.body]]</p></div>
       </div>
   </div>

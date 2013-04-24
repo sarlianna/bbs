@@ -6,6 +6,8 @@
 //todo: 
 //-realtime aspect with websockets
 //-modularity/reusability etc
+//-Navigation bar with recently visited threads easily available.  this could be really solid
+//  Combine the above with angular handling thread navigations and the experience would be perfect.
 
 //features that would be nice
 //-replies (just short links to other posts, basically all front end)
@@ -28,7 +30,7 @@ if (!module.parent) app.use(express.logger('dev'));
 app.use("/public",express.static( __dirname + '/public'));
 app.use(express.bodyParser());
 
-app.get('/', function( req, res){
+app.get('/', function( req, res ){
   res.render('index');
 });
 

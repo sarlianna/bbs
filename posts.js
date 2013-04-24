@@ -12,17 +12,18 @@ module.exports = {
     var postdocs;
     db.posts.find({'thread': req.params.threadId }).sort({}, function(err, docs){
       postdocs = docs;
-      db.threads.find({'id': req.params.threadId }, function(err, docs){
-        res.render('thread', { 'title':docs.title, 'posts': postdocs, 'threadId': req.params.threadId });
+      db.threads.find({'id': req.params.threadId }, function(err, doc){
+        if (err) console.log("Error retrieving thread: " + err);
+        res.render('thread', { 'title':doc.title, 'posts': postdocs, 'threadId': req.params.threadId });
       });
     });
   },
 
   "newthread" : function(req, res, next){
     var newid = util.generateUUID();
-    var title = req.param('title') ? req.param('title') : "No Title";
+    var title = req.param('title') || "No Title";
     var pub = req.param('public');
-    db.threads.save({'id': newid, 'title': title, 'public': pub, 'age': new Date() }, function(err, docs){
+    db.threads.save({'id': newid, 'title': title, 'public': pub, 'age': new Date(), 'postcount': 0 }, function(err, docs){
       if(err || !docs){
         res.render('servererror');
       }
@@ -40,15 +41,18 @@ module.exports = {
   },
 
   //todo: add user id (ip-specific) to posts, maybe hash ip?
-  // add check to make sure valid thread is being passed
   "addpost" : function(req, res, next){
     if(req.body.body){
-      var user = req.body.user ? req.body.user : 'No name';
-      db.posts.save({'user':user, 'body':req.body.body, 'age': new Date(), 'thread': req.params.threadId }, function(err, doc){
-         res.send(doc);
+      var user = req.body.user || 'No name';
+      //change thread age to reflect latest post, and get access to it so we can get the postcount
+      db.threads.findAndModify({ query: { 'id': req.params.threadId }, 
+                                  update: { $set: { 'age': new Date() }, $inc: {'postcount': 1} }, 
+                                  new: true}, function(err, docs){
+
+        db.posts.save({'user':user, 'body':req.body.body, 'age': new Date(), 'thread': req.params.threadId, 'postnum':docs.postcount }, function(err, doc){
+           res.send(doc);
+        });
       });
-      //change thread age to reflect latest post
-      db.threads.findAndModify({ query: { 'id': req.params.threadId }, update: { $set: { 'age': new Date() } }, new: true}, function(err, docs){ });
     } else {
       res.status('400').render('error.json', { error: "Unacceptable data.", message: "Post needs a body."});
     }
