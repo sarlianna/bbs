@@ -7,14 +7,21 @@ var util        = require("./util");
 
 module.exports = {
 
-//todo: render threads with their title
+  "index" : function(req, res, next){
+    db.threads.find({'public':"on"}).sort({age: -1}).limit(20, function(err, docs){
+       if(err) res.render('servererror');
+       res.render('index', { threads: docs });
+    });
+  },
+
   "posts" : function(req, res, next){
     var postdocs;
     db.posts.find({'thread': req.params.threadId }).sort({}, function(err, docs){
       postdocs = docs;
       db.threads.find({'id': req.params.threadId }, function(err, doc){
-        if (err) console.log("Error retrieving thread: " + err);
-        res.render('thread', { 'title':doc.title, 'posts': postdocs, 'threadId': req.params.threadId });
+        if (err || !doc) console.log("Error retrieving thread: " + err);
+        if(doc[0]) //for some reason this method gets called twice, once with a proper query and once without?  weird shit was happening, I dunno.
+        res.render('thread', { 'title':doc[0].title, 'posts': postdocs, 'threadId': req.params.threadId });
       });
     });
   },
@@ -24,20 +31,9 @@ module.exports = {
     var title = req.param('title') || "No Title";
     var pub = req.param('public');
     db.threads.save({'id': newid, 'title': title, 'public': pub, 'age': new Date(), 'postcount': 0 }, function(err, docs){
-      if(err || !docs){
-        res.render('servererror');
-      }
+      if(err) res.render('servererror');
     });
     res.redirect('/' + newid);
-  },
-
-  "browsethreads" : function(req, res, next){
-    db.threads.find({'public':"on"}).sort({age: -1}, function(err, docs){
-       if(!docs || err){
-          res.render('servererror');
-       }     
-       res.render('browse', { threads: docs });
-    });
   },
 
   //todo: add user id (ip-specific) to posts, maybe hash ip?

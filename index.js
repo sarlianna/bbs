@@ -30,13 +30,11 @@ if (!module.parent) app.use(express.logger('dev'));
 app.use("/public",express.static( __dirname + '/public'));
 app.use(express.bodyParser());
 
-app.get('/', function( req, res ){
-  res.render('index');
-});
+app.get('/', controllers.index);
+
+app.get('/about', function(req, res){ res.render('about'); });
 
 app.get('/newthread', controllers.newthread);
-
-app.get('/browse', controllers.browsethreads);
 
 app.get('/:threadId', controllers.posts);
 

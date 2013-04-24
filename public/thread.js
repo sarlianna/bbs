@@ -1,4 +1,3 @@
-//should this be here?
 var app = angular.module('app', ['ngResource'], function($interpolateProvider) {
   $interpolateProvider.startSymbol('[[');
   $interpolateProvider.endSymbol(']]');
@@ -40,6 +39,7 @@ function threadCtrl($scope, $http, $resource) {
   };
 
   $scope.sortBtn = "Oldest";
+  if($scope.postReverse) $scope.sortBtn = "Newest";
   $scope.postReverse = false;
   $scope.orderProp = 'age';
 }

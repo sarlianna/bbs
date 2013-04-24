@@ -6,22 +6,45 @@
   <link rel="stylesheet" href="./public/style.css">
 </head>
 <body>
-  <div class="row container">
-    <p class="text-center"><h3 id="sitetitle">Lazy BBS</h3></p>
-    <span class="span3"><a class="mainnav" href="/browse">Browse Threads</a></span>
-    <div class="span6">
-    <form action="/newthread" method="get" class="form-horizontal" >
-      <div class="control-group"><div class="primary-blue controls">Create New Thread</div></div>
-      <div class="control-group">
-        <label class="control-label primary-red">Thread Title</label><div class="controls"><input type="text" name="title"></div>
+  <div class="container-fluid">
+    <div class="text-center page-header"><h3>Lazy BBS</h3></div>
+    <div class="row-fluid">
+
+      <div class="span2">
+        <ul class="nav nav-tabs nav-stacked">
+          <li class="active"><a href="/">Create Thread</a></li>
+          <li><a href="/about">About</a></li>
+        </ul>
       </div>
-      <div class="control-group">
-        <label class="control-label primary-red">Public?</label><div class="controls"><input type="checkbox" name="public" checked></div>
+
+      <div class="span10">
+      <form action="/newthread" method="get" class="form-horizontal" >
+        <div class="control-group"><div class="primary-blue controls">Create New Thread</div></div>
+        <div class="control-group">
+          <label class="control-label primary-red">Thread Title</label><div class="controls"><input type="text" name="title"></div>
+        </div>
+        <div class="control-group">
+          <label class="control-label primary-red">Public?</label><div class="controls"><input type="checkbox" name="public" checked></div>
+        </div>
+        <div class="control-group"><div class="controls"><button class="btn" type="submit" >Create</button></div></div>
+      </form>
+    </div>
+    </div>
+
+    <div class="row-fluid">
+      <div class="span2"></div>
+      <div class="span10"><h4>Recent Public Threads</h4></div>
+    </div>
+    <div class="row-fluid">
+      <div class="span2"></div>
+      <div class="span10">
+      {% for thread in threads %}
+        <div><a href='/{{ thread.id }}'>{{ thread.title }}</a></div>
+      {% else %}
+        <div><p>There are currently no public threads.</p></div>
+      {% endfor %}
       </div>
-      <div class="control-group"><div class="controls"><button class="btn" type="submit" >Create</button></div></div>
-    </form>
-  </div>
-  <div class="span3"></div>
+    </div>
   </div>
 </body>
 </html>

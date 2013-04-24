@@ -17,27 +17,42 @@
   <script src="./public/thread.js"></script>
 </head>
 <body>
-  <div class='container' ng-controller="threadCtrl">
-    <div class="page-header text-center"><h3>{{ title }}</h3></div>
-    <div id='add'>
-      <form ng-submit="addPost()" class="form-horizontal" method="post">
-        <div class="control-group">
-          <label class="control-label primary-red">Username</label><div class="controls"><input type="text" ng-model="postUser"></div>
-        </div>
-        <div class="control-group">
-          <label class="control-label">Post Body</label>
-          <div class="controls"><textarea class="bodyin" rows="5" ng-model="postBody"></textarea></div>
-        </div>
-        <div class="control-group">
-          <div class="controls"><button class="btn" type="submit">Post</button></div>
-        </div>
-      </form>
+  <div class='container-fluid' ng-controller="threadCtrl">
+    <div class="page-header text-center row-fluid"><h3>{{ title }}</h3></div>
+    <div class="row-fluid">
+      <div class="span2">
+        <ul class="nav nav-tabs nav-stacked">
+          <li><a href="/">Create Thread</a></li>
+          <li><a href="/about">About</a></li>
+        </ul>
+      </div>
+
+      <div id='add' class="span10">
+        <form ng-submit="addPost()" class="form-horizontal" method="post">
+          <div class="control-group">
+            <label class="control-label primary-red">Username</label><div class="controls"><input type="text" ng-model="postUser"></div>
+          </div>
+          <div class="control-group">
+            <label class="control-label">Post Body</label>
+            <div class="controls"><textarea class="bodyin" rows="3" ng-model="postBody"></textarea></div>
+          </div>
+          <div class="control-group">
+            <div class="controls"><button class="btn" type="submit">Post</button></div>
+          </div>
+        </form>
+      </div>
     </div>
-    <div>Sort by:<button class="btn" ng-click="changeSort()" type="button" ng-bind="sortBtn" >Oldest</button></div>
-      <div class='post' ng-repeat="post in posts | orderBy:orderProp:postReverse ">
+
+    <div class="row-fluid"><div class="span2"></div><div class="span10">Sort by:<button class="btn" ng-click="changeSort()" type="button" ng-bind="sortBtn" ></button></div></div>
+
+    <div class='post row-fluid' ng-repeat="post in posts | orderBy:orderProp:postReverse ">
+      <div class="span2"></div>
+      <div class="span10">
         <div id='[[post.postnum]]' class='head'>Post: [[post.postnum]]<span class='smallspace'></span> User:[[post.user]]<span class='smallspace'></span> <span class="unimportant">Timestamp</span>:[[post.age]]</div>
         <div class='body'><p>[[post.body]]</p></div>
       </div>
+    </div>
+
   </div>
 </body>
 </html>
