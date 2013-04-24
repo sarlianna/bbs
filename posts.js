@@ -10,10 +10,10 @@ module.exports = {
 //todo: render threads with their title
   "posts" : function(req, res, next){
     var postdocs;
-    db.posts.find({'thread': req.params.threadId }).sort({age:-1}, function(err, docs){
+    db.posts.find({'thread': req.params.threadId }).sort({}, function(err, docs){
       postdocs = docs;
       db.threads.find({'id': req.params.threadId }, function(err, docs){
-        res.render('thread', { 'title':docs[0].title, 'posts': postdocs, 'threadId': req.params.threadId });
+        res.render('thread', { 'title':docs.title, 'posts': postdocs, 'threadId': req.params.threadId });
       });
     });
   },
