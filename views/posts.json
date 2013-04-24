@@ -1,0 +1,7 @@
+)]}',
+[
+{% for post in posts %}
+  {user: '{{ post.user }}',
+    age: '{{ post.age }}',
+    body: '{{ post.body }}' } {% if loop.revindex0 > 0 %},{% endif %}
+{% endfor %} ] 

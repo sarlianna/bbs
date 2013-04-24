@@ -19,7 +19,7 @@
   <div class='container' ng-controller="threadCtrl">
     <h3 class="threadtitle text-center" >{{ thread.title }}</h3>
     <div id='add'>
-      <form ng-submit="addPost()" class="form-horizontal">
+      <form ng-submit="addPost()" class="form-horizontal" method="post">
         <div class="control-group">
           <label class="control-label primary-red">Username</label><div class="controls"><input type="text" ng-model="postUser"></div>
         </div>

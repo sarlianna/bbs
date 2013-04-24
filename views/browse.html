@@ -11,6 +11,8 @@
     <div>
       {% for thread in threads %}
         <div><a href='/{{ thread.id }}'>{{ thread.title }}</a></div>
+      {% else %}
+        <div><p>There are currently no threads.</p></div>
       {% endfor %}
     </div>
   </div>

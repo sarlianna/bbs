@@ -3,9 +3,8 @@
 //まあいい
 //頑張ってみようか？
 //
-//goals: -threads
-//THREADS DONE CHECK man that only took me like an hour.
-//-angular + realtime aspect
+//todo: 
+//-realtime aspect with websockets
 //-modularity/reusability etc
 
 //features that would be nice

@@ -23,8 +23,10 @@ function threadCtrl($scope, $http, $resource) {
       newpost.user = $scope.postUser ? $scope.postUser : 'No Name';
       newpost.age = new Date().getTime();
       newpost.body = $scope.postBody;
+
       $scope.postBody = '';
       $scope.posts.push(newpost);
+
       newpost.$save();
     }
   };
