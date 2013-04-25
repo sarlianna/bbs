@@ -9,6 +9,19 @@ function threadCtrl($scope, $http, $resource) {
 
   $scope.posts = window.initdata.posts;
   $scope.threadId = window.initdata.threadId;
+  $scope.sortBtn = "Oldest";
+  if($scope.postReverse) $scope.sortBtn = "Newest";
+  $scope.postReverse = false;
+  $scope.orderProp = 'age';
+  $scope.socket = io.connect('http://localhost');
+
+  $scope.socket.emit('subscribe', { 'id': $scope.threadId });
+  $scope.socket.on('update', function(post){
+    var newpost = new Post({threadId: post.threadId, user: post.user, age:post.age, body:post.body, postnum:post.postnum});
+    $scope.$apply(function(){//force view update immediately.
+      $scope.posts.push(newpost);
+    });
+  });
 
   var Post = $resource('/:threadId/post',
       { threadId: $scope.threadId }, 
@@ -23,7 +36,7 @@ function threadCtrl($scope, $http, $resource) {
       newpost.body = $scope.postBody;
 
       $scope.postBody = '';
-      $scope.posts.push(newpost);
+      //$scope.posts.push(newpost);
 
       newpost.$save();
     }
@@ -38,10 +51,6 @@ function threadCtrl($scope, $http, $resource) {
     }
   };
 
-  $scope.sortBtn = "Oldest";
-  if($scope.postReverse) $scope.sortBtn = "Newest";
-  $scope.postReverse = false;
-  $scope.orderProp = 'age';
 }
 
 

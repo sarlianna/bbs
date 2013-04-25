@@ -6,7 +6,8 @@
   "dependencies": {
     "express": "3.x",
     "mongojs": "",
-    "swig": ""
+    "swig": "",
+    "socket.io": "0.9"
   }
 }
 

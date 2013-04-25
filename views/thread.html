@@ -14,6 +14,7 @@
       body: '{{ post.body }}' } {% if loop.revindex0 > 0 %},{% endif %}
     {% endfor %} ],
     threadId: "{{ threadId }}" } ;</script>
+  <script src="/socket.io/socket.io.js"></script>
   <script src="./public/thread.js"></script>
 </head>
 <body>

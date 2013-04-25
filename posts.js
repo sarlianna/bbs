@@ -2,6 +2,7 @@ var databaseUrl = "bbs";//"username:password@yes.com/mydb
 var collections = ["posts", "threads"];
 var mongojs     = require("mongojs");
 var db          = mongojs(databaseUrl, collections);
+//var io          = require("./io")();
 
 var util        = require("./util");
 
@@ -46,7 +47,8 @@ module.exports = {
                                   new: true}, function(err, docs){
 
         db.posts.save({'user':user, 'body':req.body.body, 'age': new Date(), 'thread': req.params.threadId, 'postnum':docs.postcount }, function(err, doc){
-           res.send(doc);
+          res.send(doc);
+          //io.sockets.in(req.params.threadId).emit('update', doc);
         });
       });
     } else {

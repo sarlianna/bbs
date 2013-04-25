@@ -4,7 +4,7 @@
 //頑張ってみようか？
 //
 //todo: 
-//-realtime aspect with websockets
+//-realtime aspect with websockets -- mostly done but needs to be emitted from controllers and not index
 //-modularity/reusability etc
 //-Navigation bar with recently visited threads easily available.  this could be really solid
 //  Combine the above with angular handling thread navigations and the experience would be perfect.
@@ -14,11 +14,12 @@
 //-links
 //-image/video embedding
 
-var http      = require ('http');
-var express   = require ('express');
-var cons      = require ('consolidate');
-var app       = express();
-
+var http        = require ('http');
+var express     = require ('express');
+var cons        = require ('consolidate');
+var app         = express();
+var server      = http.createServer(app);
+var io          = require ('socket.io').listen(server);
 var controllers = require('./posts');
 
 app.set('title', 'Lazy BBS - Colton\'s archenemy');
@@ -30,6 +31,13 @@ if (!module.parent) app.use(express.logger('dev'));
 app.use("/public",express.static( __dirname + '/public'));
 app.use(express.bodyParser());
 
+io.sockets.on('connection', function(socket){
+  socket.emit('success');
+  socket.on('subscribe', function(thread){
+    socket.join(thread.id);
+  });
+});
+
 app.get('/', controllers.index);
 
 app.get('/about', function(req, res){ res.render('about'); });
@@ -40,7 +48,11 @@ app.get('/:threadId', controllers.posts);
 
 app.get('/:threadId/post', controllers.postjson);
 
-app.post('/:threadId/post', controllers.addpost);
+app.post('/:threadId/post', function(req, res){
+  controllers.addpost(req, res);
+  io.sockets.in(req.params.threadId).emit('update', req.body);
+  console.log(io.sockets.clients(req.params.threadId));
+});
 
-app.listen(8000);
-console.log("Listening on port 8000...");
+server.listen(8000);
+console.log("Listening on port 8000..."); 
