@@ -31,6 +31,7 @@ if (!module.parent) app.use(express.logger('dev'));
 app.use("/public",express.static( __dirname + '/public'));
 app.use(express.bodyParser());
 
+io.set('log level', 1);
 io.sockets.on('connection', function(socket){
   socket.emit('success');
   socket.on('subscribe', function(thread){
@@ -49,7 +50,6 @@ app.get('/:threadId', controllers.posts);
 app.get('/:threadId/post', controllers.postjson);
 
 app.post('/:threadId/post', controllers.addpost);
-});
 
 server.listen(8000);
 console.log("Listening on port 8000..."); 

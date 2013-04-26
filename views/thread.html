@@ -46,7 +46,7 @@
 
     <div class="row-fluid"><div class="span2"></div><div class="span10">Sort by:<button class="btn" ng-click="changeSort()" type="button" ng-bind="sortBtn" ></button></div></div>
 
-    <div class='post row-fluid' ng-repeat="post in posts | orderBy:orderProp:postReverse ">
+    <div class='post row-fluid' ng-repeat="post in posts | orderBy:sortPost:postReverse ">
       <div class="span2"></div>
       <div class="span10">
         <div id='[[post.postnum]]' class='head'>Post: [[post.postnum]]<span class='smallspace'></span> User:[[post.user]]<span class='smallspace'></span> <span class="unimportant">Timestamp</span>:[[post.age]]</div>

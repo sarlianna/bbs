@@ -26,6 +26,10 @@ function threadCtrl($scope, $http, $resource) {
       { //methods 
       });
 
+  $scope.sortPost = function(post) {
+    return parseInt(post.postnum);
+  };
+
   $scope.addPost = function () {
     if($scope.postBody){
       var newpost = new Post({threadId: $scope.threadId});
