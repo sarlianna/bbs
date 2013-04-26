@@ -6,8 +6,9 @@ var app = angular.module('app', ['ngResource'], function($interpolateProvider) {
 app.directive('replyLinks', function(){
   //we only need the linking function; factory and compile defaults are fine
   return function(scope, element, attrs){
-    var curhtml = element.html();
-    element.html( curhtml.replace(/>>\d{1,4}/g, "<a href='$&'>$&</a>") );
+    scope.$watch(element.html(), function(){
+      element.html( element.html().replace(/>>\d{1,4}/g, "<a href='$&'>$&</a>") );
+    });
   };
 });
 
