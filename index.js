@@ -20,7 +20,7 @@ var cons        = require ('consolidate');
 var app         = express();
 var server      = http.createServer(app);
 var io          = require ('socket.io').listen(server);
-var controllers = require('./posts');
+var controllers = require('./posts')(io);
 
 app.set('title', 'Lazy BBS - Colton\'s archenemy');
 app.engine('html', cons.swig);
@@ -48,10 +48,7 @@ app.get('/:threadId', controllers.posts);
 
 app.get('/:threadId/post', controllers.postjson);
 
-app.post('/:threadId/post', function(req, res){
-  controllers.addpost(req, res);
-  io.sockets.in(req.params.threadId).emit('update', req.body);
-  console.log(io.sockets.clients(req.params.threadId));
+app.post('/:threadId/post', controllers.addpost);
 });
 
 server.listen(8000);
