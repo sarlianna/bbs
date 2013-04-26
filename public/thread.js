@@ -3,8 +3,6 @@ var app = angular.module('app', ['ngResource'], function($interpolateProvider) {
   $interpolateProvider.endSymbol(']]');
 });
 
-//todo:
-//initial data should be a collection of Posts, I guess... (this doesn't really seem to matter, angular sorts them and such just fine)
 function threadCtrl($scope, $http, $resource) {
 
   $scope.posts = window.initdata.posts;
