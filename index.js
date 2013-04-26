@@ -4,7 +4,6 @@
 //頑張ってみようか？
 //
 //todo: 
-//-realtime aspect with websockets -- mostly done but needs to be emitted from controllers and not index
 //-modularity/reusability etc
 //-Navigation bar with recently visited threads easily available.  this could be really solid
 //  Combine the above with angular handling thread navigations and the experience would be perfect.

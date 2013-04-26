@@ -3,6 +3,14 @@ var app = angular.module('app', ['ngResource'], function($interpolateProvider) {
   $interpolateProvider.endSymbol(']]');
 });
 
+app.directive('replyLinks', function(){
+  //we only need the linking function; factory and compile defaults are fine
+  return function(scope, element, attrs){
+    var curhtml = element.html();
+    element.html( curhtml.replace(/>>\d{1,4}/g, "<a href='$&'>$&</a>") );
+  };
+});
+
 function threadCtrl($scope, $http, $resource) {
 
   $scope.posts = window.initdata.posts;
@@ -35,7 +43,7 @@ function threadCtrl($scope, $http, $resource) {
       var newpost = new Post({threadId: $scope.threadId});
       newpost.user = $scope.postUser || 'No Name';
       newpost.age = new Date();
-      newpost.body = $scope.postBody;
+      newpost.body = $scope.postBody;//.replace(/>>\d{1,4}/g, "<a href='$&'>$&</a>")
 
       $scope.postBody = '';
       //$scope.posts.push(newpost);
