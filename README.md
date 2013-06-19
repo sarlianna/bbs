@@ -1,6 +1,6 @@
-lazybbs
+bbs
 =======
 
-it's lazy so you don't have to be
+a simple bbs using node.js, angular, mongodb, and socket.io for realtime thread updates.
 
 
